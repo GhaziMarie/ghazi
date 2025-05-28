@@ -1,0 +1,1022 @@
+/* إعادة تعيين الأساسيات والتخطيط العام */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* الألوان الأساسية للوضع العادي */
+    --body-bg: #f0f4f8;
+    --container-bg: #fff;
+    --text-color: #333;
+    --primary-color: #4a0e7a;
+    --secondary-color: #6a1b9a;
+    --accent-color: #8839b8;
+    --border-color: #e0e0e0;
+    --card-bg: #f9f9f9;
+    --card-border-right: #6a1b9a;
+    --adhkar-text-color: #2c3e50;
+    --adhkar-benefit-color: #666;
+    --adhkar-count-display-bg: #e0f2f7;
+    --adhkar-count-display-color: #2196f3;
+    --counter-btn-bg: #4CAF50;
+    --counter-btn-hover-bg: #45a049;
+    --reset-btn-bg: #f44336;
+    --reset-btn-hover-bg: #da190b;
+    --favorite-btn-bg: #ff9800;
+    --favorite-btn-active-bg: #e65100;
+    --favorite-btn-hover-bg: #fb8c00;
+    --reminder-btn-bg: #17a2b8;
+    --reminder-btn-hover-bg: #138496;
+    --share-btn-bg: #00bcd4;
+    --share-btn-hover-bg: #00acc1;
+    --input-border: #ddd;
+    --input-focus-border: #6a1b9a;
+    --error-color: red;
+    --admin-panel-bg: #f4f4f4;
+    --type-item-bg: #e3f2fd;
+    --type-item-color: #3f51b5;
+    --modal-bg: #fefefe;
+    --modal-shadow: rgba(0, 0, 0, 0.3);
+    --modal-overlay-bg: rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode {
+    /* الألوان لوضع الظلام */
+    --body-bg: #212121;
+    --container-bg: #2c2c2c;
+    --text-color: #e0e0e0;
+    --primary-color: #bb86fc; /* أرجواني فاتح */
+    --secondary-color: #3700b3; /* بنفسجي غامق */
+    --accent-color: #6200ee; /* بنفسجي */
+    --border-color: #424242;
+    --card-bg: #3c3c3c;
+    --card-border-right: var(--primary-color);
+    --adhkar-text-color: #ffffff;
+    --adhkar-benefit-color: #a0a0a0;
+    --adhkar-count-display-bg: #424242;
+    --adhkar-count-display-color: #90caf9;
+    --counter-btn-bg: #66bb6a;
+    --counter-btn-hover-bg: #5a9b5f;
+    --reset-btn-bg: #ef5350;
+    --reset-btn-hover-bg: #d32f2f;
+    --favorite-btn-bg: #ffb74d;
+    --favorite-btn-active-bg: #ff9800;
+    --favorite-btn-hover-bg: #ff9800;
+    --reminder-btn-bg: #4dd0e1;
+    --reminder-btn-hover-bg: #26c6da;
+    --share-btn-bg: #4db6ac;
+    --share-btn-hover-bg: #26a69a;
+    --input-border: #555;
+    --input-focus-border: var(--primary-color);
+    --error-color: #ffcc00; /* أصفر محذر */
+    --admin-panel-bg: #363636;
+    --type-item-bg: #424242;
+    --type-item-color: #90caf9;
+    --modal-bg: #363636;
+    --modal-shadow: rgba(0, 0, 0, 0.8);
+    --modal-overlay-bg: rgba(0, 0, 0, 0.8);
+}
+
+
+body {
+    font-family: 'Almarai', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    direction: rtl;
+    text-align: right;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--container-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+h1 {
+    font-size: 2.8em;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 700;
+    margin-top: 30px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+h3 {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-top: 25px;
+}
+
+/* حقل البحث */
+.search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar input {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-family: 'Almarai', sans-serif;
+    text-align: right;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    background-color: var(--card-bg); /* لتغيير لون الخلفية في الوضع الداكن */
+    color: var(--adhkar-text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px var(--primary-color), 0.2;
+}
+
+
+/* أزرار الفلاتر */
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.filter-buttons button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    flex-grow: 1;
+    max-width: 200px;
+}
+
+.filter-buttons button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.filter-buttons button.active {
+    background-color: var(--primary-color);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+/* عرض الأذكار */
+.adhkar-display {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.adhkar-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    border-right: 5px solid var(--card-border-right);
+}
+
+.adhkar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.adhkar-text {
+    font-size: 1.4em;
+    color: var(--adhkar-text-color);
+    margin-bottom: 15px;
+    line-height: 1.8;
+    transition: color 0.3s ease;
+}
+
+.adhkar-benefit {
+    font-size: 0.9em;
+    color: var(--adhkar-benefit-color);
+    margin-top: 10px;
+    font-style: italic;
+    border-right: 2px solid var(--border-color);
+    padding-right: 8px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.adhkar-count-display {
+    display: inline-block;
+    background-color: var(--adhkar-count-display-bg);
+    color: var(--adhkar-count-display-color);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.adhkar-counter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.adhkar-counter-wrapper button {
+    background-color: var(--counter-btn-bg);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.adhkar-counter-wrapper button:hover {
+    background-color: var(--counter-btn-hover-bg);
+}
+
+.adhkar-counter-wrapper button.reset-counter-btn {
+    background-color: var(--reset-btn-bg);
+}
+.adhkar-counter-wrapper button.reset-counter-btn:hover {
+    background-color: var(--reset-btn-hover-bg);
+}
+
+.adhkar-count-val {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+    min-width: 30px; /* لضمان عدم اهتزاز العنصر عند تغيير الأرقام */
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+
+.no-adhkar-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--adhkar-benefit-color);
+    padding: 50px;
+    transition: color 0.3s ease;
+}
+
+/* لوحة المصادقة (تسجيل الدخول) */
+.auth-panel {
+    background-color: var(--body-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-panel h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.auth-panel input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Almarai', sans-serif;
+    text-align: right;
+    background-color: var(--card-bg);
+    color: var(--adhkar-text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.password-input-wrapper input[type="password"],
+.password-input-wrapper input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    padding-left: 40px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Almarai', sans-serif;
+    text-align: right;
+    background-color: var(--card-bg);
+    color: var(--adhkar-text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.password-input-wrapper .toggle-password {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--adhkar-benefit-color);
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+
+.auth-panel button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.auth-panel button:hover {
+    background-color: var(--accent-color);
+}
+
+.error-message {
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--error-color);
+    transition: color 0.3s ease;
+}
+
+
+/* لوحة التحكم */
+.admin-panel {
+    background-color: var(--admin-panel-bg);
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+    border: 1px dashed var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* فئة لإخفاء العناصر */
+.hidden {
+    display: none !important;
+}
+
+.admin-panel h2 {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+/* نموذج إضافة/تعديل الأذكار */
+.adhkar-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.adhkar-form textarea,
+.adhkar-form input[type="text"],
+.adhkar-form input[type="number"],
+.adhkar-form select {
+    padding: 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1em;
+    width: 100%;
+    font-family: 'Almarai', sans-serif;
+    text-align: right;
+    background-color: var(--card-bg);
+    color: var(--adhkar-text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.adhkar-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.adhkar-form button {
+    background-color: var(--counter-btn-bg); /* Use counter button color */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.adhkar-form button:hover {
+    background-color: var(--counter-btn-hover-bg);
+}
+
+.adhkar-form button#cancel-edit-btn {
+    background-color: var(--reset-btn-bg);
+}
+.adhkar-form button#cancel-edit-btn:hover {
+    background-color: var(--reset-btn-hover-bg);
+}
+
+.adhkar-form button.hidden {
+    display: none;
+}
+
+/* إدارة أنواع الأذكار */
+.adhkar-types-management {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.adhkar-types-management input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Almarai', sans-serif;
+    text-align: right;
+    background-color: var(--card-bg);
+    color: var(--adhkar-text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.adhkar-types-management button {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.adhkar-types-management button:hover {
+    background-color: #007bb5;
+}
+
+.types-list {
+    list-style: none;
+    padding: 0;
+}
+
+.types-list li {
+    background-color: var(--type-item-bg);
+    margin-bottom: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+    color: var(--type-item-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.types-list li button {
+    background-color: var(--reset-btn-bg);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.types-list li button:hover {
+    background-color: var(--reset-btn-hover-bg);
+}
+
+/* تنسيقات أزرار التعديل والحذف داخل بطاقات الأذكار (تظهر فقط في لوحة التحكم) */
+.adhkar-card .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.adhkar-card .actions button {
+    background-color: #FFC107;
+    color: #333;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.adhkar-card .actions button:hover {
+    background-color: #ffb300;
+}
+
+.adhkar-card .actions button.delete-btn {
+    background-color: var(--reset-btn-bg);
+    color: white;
+}
+
+.adhkar-card .actions button.delete-btn:hover {
+    background-color: var(--reset-btn-hover-bg);
+}
+
+/* تنسيق زر التذكير والمفضلة والمشاركة */
+.adhkar-interactions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: flex-end; /* محاذاة الأزرار لليمين */
+}
+
+.adhkar-interactions button {
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.adhkar-interactions .reminder-btn {
+    background-color: var(--reminder-btn-bg);
+    color: white;
+}
+
+.adhkar-interactions .reminder-btn:hover {
+    background-color: var(--reminder-btn-hover-bg);
+}
+
+.adhkar-interactions .favorite-btn {
+    background-color: var(--favorite-btn-bg); /* برتقالي */
+    color: white;
+}
+
+.adhkar-interactions .favorite-btn.active {
+    background-color: var(--favorite-btn-active-bg); /* برتقالي أغمق للمفضلة النشطة */
+}
+
+.adhkar-interactions .favorite-btn:hover {
+    background-color: var(--favorite-btn-hover-bg);
+}
+
+.adhkar-interactions .share-btn {
+    background-color: var(--share-btn-bg); /* سماوي فاتح */
+    color: white;
+}
+
+.adhkar-interactions .share-btn:hover {
+    background-color: var(--share-btn-hover-bg);
+}
+
+
+/* قسم الخيارات المتقدمة في لوحة التحكم (زر تصدير البيانات) */
+.advanced-options {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color);
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.export-button {
+    background-color: #f0ad4e;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    flex-grow: 1;
+    max-width: 250px;
+    text-align: center; /* للتأكد أن النص في المنتصف داخل الزر */
+}
+
+.export-button:hover {
+    background-color: #ec971f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.export-button.import-button {
+    background-color: #6c757d; /* لون رمادي للاستيراد */
+}
+
+.export-button.import-button:hover {
+    background-color: #5a6268;
+}
+
+/* تنسيقات خاصة بزر تغيير بيانات دخول المسؤول */
+.export-button.admin-credentials-button {
+    background-color: #5bc0de;
+}
+
+.export-button.admin-credentials-button:hover {
+    background-color: #31b0d5;
+}
+
+/* تنسيقات زر القائمة والقائمة المنسدلة */
+.menu-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.menu-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--container-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropdown-menu button {
+    background-color: transparent;
+    color: var(--text-color);
+    border: none;
+    padding: 10px 15px;
+    text-align: right;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.dropdown-menu button:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-menu button:hover {
+    background-color: var(--body-bg);
+    color: var(--primary-color);
+}
+
+/* تنسيقات النافذة المنبثقة (Modal) */
+.modal {
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--modal-overlay-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    margin: auto;
+    padding: 30px;
+    border: 1px solid var(--input-border);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--modal-shadow);
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="time"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Almarai', sans-serif;
+    text-align: right;
+    background-color: var(--card-bg);
+    color: var(--adhkar-text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: right;
+    transition: color 0.3s ease;
+}
+
+.modal-content select {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Almarai', sans-serif;
+    text-align: right;
+    background-color: var(--card-bg);
+    color: var(--adhkar-text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.modal-content .password-input-wrapper {
+    margin-bottom: 15px;
+}
+
+.modal-content button[type="submit"] {
+    background-color: var(--counter-btn-bg);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: var(--counter-btn-hover-bg);
+}
+
+.modal-content .cancel-button {
+    background-color: var(--reset-btn-bg);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.modal-content .cancel-button:hover {
+    background-color: var(--reset-btn-hover-bg);
+}
+
+.modal-content .reminder-text {
+    background-color: var(--adhkar-count-display-bg); /* Use similar to count display */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--adhkar-count-display-color);
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* تنسيقات خاصة بالتذكيرات المتعددة داخل المودال */
+#add-reminder-form {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border-color);
+    transition: border-color 0.3s ease;
+}
+
+#add-reminder-form h3 {
+    margin-bottom: 15px;
+    text-align: right;
+    font-size: 1.3em;
+}
+
+.current-reminders-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: right;
+}
+
+.current-reminders-list li {
+    background-color: var(--type-item-bg);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+    color: var(--type-item-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.current-reminders-list li button {
+    background-color: var(--reset-btn-bg);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s ease;
+}
+
+.current-reminders-list li button:hover {
+    background-color: var(--reset-btn-hover-bg);
+}
+
+.current-reminders-list .no-reminders-message {
+    text-align: center;
+    font-style: italic;
+    color: var(--adhkar-benefit-color);
+    background: none;
+    padding: 0;
+    margin-bottom: 0;
+    transition: color 0.3s ease;
+}
+
+.modal-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--border-color);
+    transition: border-color 0.3s ease;
+}
+
+
+/* قواعد التجاوب (Media Queries) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 15px;
+        margin: 10px auto;
+    }
+    h1 {
+        font-size: 2.2em;
+    }
+    .filter-buttons button {
+        font-size: 1em;
+        padding: 10px 15px;
+        max-width: 100%;
+        flex-grow: 1;
+    }
+    .adhkar-text {
+        font-size: 1.2em;
+    }
+    .adhkar-form textarea,
+    .adhkar-form input,
+    .adhkar-form select {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .adhkar-types-management {
+        flex-direction: column;
+    }
+    .adhkar-types-management input,
+    .adhkar-types-management button {
+        width: 100%;
+    }
+    .adhkar-card {
+        padding: 20px;
+    }
+    .adhkar-interactions {
+        flex-direction: column;
+        align-items: flex-end; /* محاذاة لليمين */
+    }
+    .adhkar-interactions button {
+        width: 100%;
+    }
+    .adhkar-counter-wrapper {
+        flex-direction: column;
+        align-items: flex-end; /* محاذاة لليمين */
+    }
+    .adhkar-counter-wrapper button {
+        width: 100%;
+    }
+    .advanced-options {
+        flex-direction: column;
+    }
+    .export-button {
+        max-width: 100%;
+    }
+    .menu-container {
+        top: 10px;
+        right: 10px;
+    }
+    .dropdown-menu {
+        min-width: 150px;
+        padding: 8px;
+    }
+    .dropdown-menu button {
+        font-size: 1em;
+        padding: 8px 12px;
+    }
+    .modal-content {
+        padding: 20px;
+        width: 95%;
+    }
+    .modal-content input[type="text"],
+    .modal-content input[type="time"],
+    .modal-content select {
+        width: 100%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 3em;
+    }
+    .filter-buttons button {
+        font-size: 1.05em;
+        padding: 12px 20px;
+    }
+    .adhkar-text {
+        font-size: 1.3em;
+    }
+    .menu-container {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+@media (min-width: 769px) {
+    .container {
+        padding: 30px;
+    }
+    h1 {
+        font-size: 3.5em;
+    }
+}
