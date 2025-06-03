@@ -1,109 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم الأذكار</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="manifest" href="manifest.json">
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>لوحة تحكم الأذكار</h1>
-
-        <div class="menu-container">
-            <button id="menu-toggle-btn" class="menu-button">
-                ☰
-            </button>
-            <div class="dropdown-menu hidden" id="main-dropdown-menu">
-                <button id="user-view-btn">عرض المستخدم</button>
-                <button id="toggle-dark-mode-btn">تبديل الوضع الليلي</button>
-            </div>
-        </div>
-
-        <div class="auth-panel" id="auth-panel">
-            <h2>تسجيل الدخول للمسؤول</h2>
-            <form id="login-form">
-                <input type="text" id="username-input" placeholder="اسم المستخدم" required>
-                <div class="password-input-wrapper">
-                    <input type="password" id="password-input" placeholder="كلمة المرور" required>
-                    <span class="toggle-password" data-target="password-input">👁️</span>
-                </div>
-                <button type="submit" id="login-btn">دخول</button>
-                <p class="error-message" id="login-error-message" style="color: red; display: none;"></p>
-            </form>
-        </div>
-
-        <div class="admin-panel hidden" id="admin-panel">
-            <h2>إدارة الأذكار</h2>
-            <form id="adhkar-form" class="adhkar-form">
-                <input type="hidden" id="adhkar-id">
-                <textarea id="adhkar-text" placeholder="نص الذكر" required></textarea>
-                <input type="text" id="adhkar-benefit" placeholder="الفائدة (اختياري)">
-                <input type="number" id="adhkar-count" placeholder="العدد (اختياري)">
-                <select id="adhkar-type-select" required>
-                </select>
-                <div class="form-actions">
-                    <button type="submit" id="save-adhkar-btn">إضافة ذكر</button>
-                    <button type="button" id="cancel-edit-btn" class="hidden">إلغاء التعديل</button>
-                </div>
-            </form>
-
-            <h3>إدارة أنواع الأذكار</h3>
-            <div class="adhkar-types-management">
-                <input type="text" id="new-type-name" placeholder="اسم النوع الجديد (مثال: أذكار الصباح)" required>
-                <input type="text" id="new-type-value" placeholder="قيمة النوع (مثال: morning)" required>
-                <button id="add-type-btn">إضافة نوع</button>
-            </div>
-            <ul id="types-list" class="types-list">
-            </ul>
-
-            <h3>خيارات متقدمة</h3>
-            <div class="advanced-options">
-                <button id="export-data-btn" class="export-button">تصدير البيانات (JSON)</button>
-                <label for="import-file-input" class="export-button import-button">استيراد البيانات (JSON)</label>
-                <input type="file" id="import-file-input" accept=".json" class="hidden">
-                <button id="change-admin-credentials-btn" class="export-button admin-credentials-button">تغيير بيانات دخول المسؤول</button>
-            </div>
-
-            <h3 class="mt-8">الأذكار حسب النوع</h3>
-            <div id="admin-tabs-container" class="admin-tabs-container">
-                </div>
-            <div id="admin-tab-content-container" class="admin-tab-content">
-                </div>
-        </div>
-    </div>
-
-    <div class="modal hidden" id="change-password-modal">
-        <div class="modal-content">
-            <h2>تغيير بيانات دخول المسؤول</h2>
-            <form id="change-password-form">
-                <input type="text" id="current-username-input" placeholder="اسم المستخدم الحالي" required>
-                <div class="password-input-wrapper">
-                    <input type="password" id="current-password-input" placeholder="كلمة المرور الحالية" required>
-                    <span class="toggle-password" data-target="current-password-input">👁️</span>
-                </div>
-                <input type="text" id="new-username-input" placeholder="اسم المستخدم الجديد" required>
-                <div class="password-input-wrapper">
-                    <input type="password" id="new-password-input" placeholder="كلمة المرور الجديدة" required>
-                    <span class="toggle-password" data-target="new-password-input">👁️️</span>
-                </div>
-                <div class="password-input-wrapper">
-                    <input type="password" id="confirm-password-input" placeholder="تأكيد كلمة المرور الجديدة" required>
-                    <span class="toggle-password" data-target="confirm-password-input">👁️</span>
-                </div>
-                <button type="submit">تغيير</button>
-                <button type="button" id="cancel-change-password-btn" class="cancel-button">إلغاء</button>
-                <p class="error-message" id="change-password-error-message" style="color: red; display: none;"></p>
-            </form>
-        </div>
-    </div>
-
-    <audio id="reminder-audio-player" class="hidden"></audio>
-
-    <script src="script.js"></script>
-</body>
-</html>
