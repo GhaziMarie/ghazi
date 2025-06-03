@@ -1,11 +1,12 @@
-const CACHE_NAME = 'adhkar-app-v1';
+const CACHE_NAME = 'adhkar-app-v1'; // قم بزيادة رقم الإصدار (مثل v2, v3) لإجبار عامل الخدمة على التحديث
 const urlsToCache = [
-    '/',
+    '/', // المسار الجذر، وعادة ما يقدم index.html
     '/index.html',
-    '/style.css',
+    '/style.css', // تأكد من اسم ملف CSS الخاص بك (هل هو style.css أم styles.css؟)
     '/script.js',
     '/favicon.ico',
     '/manifest.json',
+    '/admin.html',
     // أضف مسارات جميع الأيقونات التي ذكرتها في manifest.json
     '/icons/icon-72x72.png',
     '/icons/icon-96x96.png',
@@ -27,7 +28,12 @@ self.addEventListener('install', event => {
         caches.open(CACHE_NAME)
             .then(cache => {
                 console.log('Opened cache');
+                // هذا هو المكان الذي يحدث فيه الخطأ إذا لم يتم العثور على أحد الملفات
                 return cache.addAll(urlsToCache);
+            })
+            .catch(error => {
+                // يمكنك تسجيل الخطأ هنا لرؤية أي ملف بالضبط تسبب في المشكلة
+                console.error('Failed to add URLs to cache:', error);
             })
     );
 });
